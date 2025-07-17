@@ -42,9 +42,9 @@ cd streamlit-todo-app
 
 ### 2. Create and Activate Virtual Environment
 python -m venv .venv
-# Windows
+##### Windows
 .venv\Scripts\activate
-# macOS/Linux
+##### macOS/Linux
 source .venv/bin/activate
 
 ### 3. Install Dependencies
@@ -55,11 +55,8 @@ streamlit run streamlit_app.py
 
 ## 🛠 Tech Stack
 Python
-
 Streamlit
-
 SQLite
-
 SQLAlchemy
 
 ## 📌 Future Improvements
