@@ -42,10 +42,8 @@ cd streamlit-todo-app
 
 ### 2. Create and Activate Virtual Environment
 python -m venv .venv
-##### Windows
-.venv\Scripts\activate
-##### macOS/Linux
-source .venv/bin/activate
+- Windows: .venv\Scripts\activate
+- macOS/Linux: source .venv/bin/activate
 
 ### 3. Install Dependencies
 pip install -r requirements.txt
