@@ -19,7 +19,15 @@ A simple and interactive Todo List application built with **Streamlit** and **SQ
 
 ## 📁 Project Structure
 
-<pre lang="text"> ``` my_project/ │ ├── streamlit_app.py # Main Streamlit application ├── requirements.txt # Python dependencies ├── .gitignore # Files ignored by Git └── .venv/ # Virtual environment (excluded via .gitignore) ``` </pre>
+```
+my_project/
+│
+├── streamlit_app.py        # Main Streamlit application
+├── requirements.txt        # Python dependencies
+├── .gitignore              # Files ignored by Git
+└── .venv/                  # Virtual environment (excluded via .gitignore)
+```
+
 
 
 
