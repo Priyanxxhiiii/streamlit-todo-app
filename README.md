@@ -37,7 +37,6 @@ my_project/
 
 ### 1. Clone the Repository
 
-```bash
 git clone https://github.com/your-username/streamlit-todo-app.git
 cd streamlit-todo-app
 
@@ -54,7 +53,7 @@ pip install -r requirements.txt
 ### 4. Run the App
 streamlit run streamlit_app.py
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 Python
 
 Streamlit
@@ -63,16 +62,16 @@ SQLite
 
 SQLAlchemy
 
-📌 Future Improvements
+## 📌 Future Improvements
 - User authentication (Login/Signup)
 - Task priority levels
 - Due dates and reminders
 - Cloud database integration
 
-🙌 Contributing
+## 🙌 Contributing
 Feel free to fork this repo and submit a pull request. Any contributions are welcome!
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License.
 
 
