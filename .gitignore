@@ -1,0 +1,19 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and system files
+.env
+.DS_Store
+
+# VS Code
+.vscode/
+
+# SQLite or database files (if you create one later)
+*.db
