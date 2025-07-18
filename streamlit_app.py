@@ -64,7 +64,7 @@ class Todo:
 #### APP LOGIC
 TABLE_NAME = "todo_table"
 SESSION_STATE_TODO_KEY = "todos_data"
-conn = st.connection("todo_db", type="sql")
+
 
 @st.cache_resource
 def connect_table():
