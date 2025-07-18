@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Date, Boolean
 
 TABLE_NAME = "todo_table"
-engine = create_engine("sqlite:///todo_db.db")
+engine = create_engine("sqlite:///streamlit_app.db")
 
 metadata_obj = MetaData()
 todo_table = Table(
