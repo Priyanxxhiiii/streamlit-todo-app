@@ -17,6 +17,30 @@ from sqlalchemy import (
     Table,
 )
 
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+# ✅ Create writable SQLite database path
+DB_PATH = os.path.join(os.getcwd(), "todo_db.db")
+DATABASE_URL = f"sqlite:///{DB_PATH}"
+
+# ✅ Set up SQLAlchemy
+engine = create_engine(DATABASE_URL, echo=False)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# ✅ Base for your model
+Base = declarative_base()
+
+# ✅ Create a fake 'conn' object to match your existing code
+class Connection:
+    def __init__(self, engine, session):
+        self.engine = engine
+        self.session = session
+
+conn = Connection(engine, session)
+
 @dataclass
 class Todo:
     id: int
