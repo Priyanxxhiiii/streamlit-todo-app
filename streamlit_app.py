@@ -4,7 +4,6 @@ import streamlit as st
 from dataclasses import dataclass
 from datetime import date
 from typing import Dict
-from typing import Optional
 
 import sqlalchemy as sa
 from sqlalchemy import (
@@ -21,19 +20,18 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# ✅ Create writable SQLite database path
-DB_PATH = os.path.join(os.getcwd(), "todo_db.db")
+# ✅ Detect correct DB path for Streamlit Cloud vs Local
+DB_FOLDER = "/mount/src" if os.getenv("STREAMLIT_RUNTIME") else os.getcwd()
+DB_PATH = os.path.join(DB_FOLDER, "todo_db.db")
 DATABASE_URL = f"sqlite:///{DB_PATH}"
 
 # ✅ Set up SQLAlchemy
 engine = create_engine(DATABASE_URL, echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
-
-# ✅ Base for your model
 Base = declarative_base()
 
-# ✅ Create a fake 'conn' object to match your existing code
+# ✅ Fake connection object for compatibility
 class Connection:
     def __init__(self, engine, session):
         self.engine = engine
@@ -41,6 +39,7 @@ class Connection:
 
 conn = Connection(engine, session)
 
+# ✅ Data model
 @dataclass
 class Todo:
     id: int
@@ -61,10 +60,9 @@ class Todo:
             done=row.done
         )
 
-#### APP LOGIC
+# Constants
 TABLE_NAME = "todo_table"
 SESSION_STATE_TODO_KEY = "todos_data"
-
 
 @st.cache_resource
 def connect_table():
@@ -128,19 +126,6 @@ def mark_done_callback(connection, table, todo_id):
 def switch_edit_callback(todo_id: int):
     key = f"currently_editing_{todo_id}"
     st.session_state[key] = not st.session_state.get(key, False)
-
-def update_todo_callback(conn, table_name, todo_id, new_title, new_description, new_due_at):
-    update_todo(
-        conn,
-        table_name,
-        todo_id,
-        {
-            "title": new_title,
-            "description": new_description,
-            "due_at": new_due_at,
-        },
-    )
-    st.session_state[SESSION_STATE_TODO_KEY][todo_id] = load_todo(conn, table, todo_id)
 
 def delete_todo_callback(connection, table, todo_id):
     stmt = table.delete().where(table.c.id == todo_id)
@@ -217,25 +202,22 @@ def view_todo(todo_id: int):
                 switch_edit_callback(todo_id)
                 st.rerun()
 
-##### APP VIEW
+# ✅ MAIN APP VIEW
 st.title("Todo App")
 metadata, todo_table = connect_table()
 
 if SESSION_STATE_TODO_KEY not in st.session_state:
     st.session_state[SESSION_STATE_TODO_KEY] = load_all_todos(conn, todo_table)
 
-# Sidebar with option to toggle showing completed todos
 with st.sidebar:
     st.subheader("Configuration")
     show_completed = st.checkbox("Show Completed Todos", value=False)
-    st.json(st.session_state)
 
-# Show todos based on toggle
+# Show only todos depending on checkbox
 for todo_id, todo in st.session_state[SESSION_STATE_TODO_KEY].items():
     if show_completed or not todo.done:
         view_todo(todo_id)
 
-# Form to add new todo
 with st.form("add_todo", clear_on_submit=True):
     st.subheader(":material/add_circle: Create todo")
     st.text_input("Todo Title", key="new_todo_form__title")
