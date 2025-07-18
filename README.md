@@ -14,7 +14,7 @@ A simple and interactive Todo List application built with **Streamlit** and **SQ
 
 ## 🚀 Live Demo
 
-👉 https://app-todo-app-kpetgegzdkkplf7pk2skwt.streamlit.app/ 
+👉 https://streamlit-todo-app-0p15.onrender.com/
 
 
 ## 📁 Project Structure
