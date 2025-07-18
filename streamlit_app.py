@@ -87,7 +87,7 @@ def create_todo_callback(connection, table):
         "done": False
     }
     stmt = table.insert().values(**new_todo)
-    with conn.session as session:
+    with connection.session as session:
         session.execute(stmt)
         session.commit()
     st.session_state[SESSION_STATE_TODO_KEY] = load_all_todos(connection, table)
