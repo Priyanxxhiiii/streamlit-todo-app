@@ -15,5 +15,5 @@ __pycache__/
 # VS Code
 .vscode/
 
-# SQLite or database files (if you create one later)
-*.db
+
+
