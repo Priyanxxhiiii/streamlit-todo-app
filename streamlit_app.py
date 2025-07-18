@@ -204,7 +204,7 @@ if SESSION_STATE_TODO_KEY not in st.session_state:
 with st.sidebar:
     st.subheader("Configuration")
     show_completed = st.checkbox("Show Completed Todos", value=False)
-    st.json(st.session_state)
+    #st.json(st.session_state)
 
 # Show todos based on toggle
 for todo_id, todo in st.session_state[SESSION_STATE_TODO_KEY].items():
